@@ -1,0 +1,6 @@
+.messagesItem {
+  background: rgb(249, 250, 191);
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  height: 300px;
+}

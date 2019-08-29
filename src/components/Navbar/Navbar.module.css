@@ -1,0 +1,18 @@
+.nav {
+  background: rgb(134, 141, 247);
+  grid-area: n;
+  height: 300px;
+}
+
+.item {
+  padding: 10px;
+}
+.item a {
+  color: white;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  text-decoration: none;
+}
+
+.item a.activeL {
+  color: gold;
+}
