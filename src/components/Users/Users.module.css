@@ -1,3 +1,9 @@
+span {
+  cursor: pointer;
+}
 .selectPage {
   font-weight: bold;
+}
+img {
+ max-height: 100px;
 }

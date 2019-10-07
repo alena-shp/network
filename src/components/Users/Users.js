@@ -5,18 +5,27 @@ import userPhoto from './../../assets/img/foto.png'
 
 class Users extends React.Component {
   componentDidMount() {
-    console.log('this.props', this.props)
     axios
       .get(
-        'https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${his.props.pageSize}'
+        'https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}'
+      )
+      .then(response => {
+        this.props.setUsers(response.data.items)
+        this.props.setTotalUsersCount(response.data.totalCount)
+      })
+  }
+ onPageChanged = (pageNumber => {
+   this.props.setCurrentPage(pageNumber)
+   axios
+      .get(
+        'https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}'
       )
       .then(response => {
         this.props.setUsers(response.data.items)
       })
-  }
-
+ })
   render() {
-    let pagesCount = this.props.totalUsersCount / this.props.pageSize
+    let pagesCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
 
     let pages = []
     for (let i = 1; i <= pagesCount; i++) {
@@ -30,7 +39,7 @@ class Users extends React.Component {
             <span
               className={this.props.currentPage === p && s.selectPage}
               onClick={() => {
-                this.props.setCurrentPage(p)
+                this.onPageChanged(p)
               }}
             >
               {p}
@@ -69,7 +78,7 @@ class Users extends React.Component {
                   </button>
                 )}
               </div>
-              <div>{u.fullName}</div>
+              <div>{u.name}</div>
               <div>{u.status}</div>
               <span>
                 <div>{'u.location.city'}</div>
