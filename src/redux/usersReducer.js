@@ -3,7 +3,10 @@ const UNFOLLOW = 'UNFOLLOW'
 const SET_USERS = 'SET_USERS'
 
 let installState = {
-  users: []
+  users: [],
+  pageSize: 5,
+  totalUsersCount: 25,
+  currentPage: 1
 }
 
 const usersReducer = (state = installState, action) => {

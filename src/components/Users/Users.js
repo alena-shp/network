@@ -1,4 +1,5 @@
 import React from 'react'
+import s from './Users.module.css'
 import * as axios from 'axios'
 import userPhoto from './../../assets/img/foto.png'
 
@@ -13,8 +14,22 @@ class Users extends React.Component {
   }
 
   render() {
+    let pagesCount = this.props.totalUsersCount / this.props.pageSize
+
+    let pages = []
+    for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i)
+    }
+
     return (
       <div>
+        <div>
+          {pages.map(p => (
+            <span className={this.props.currentPage === p && s.selectPage}>
+              {p}
+            </span>
+          ))}
+        </div>
         {this.props.users &&
           this.props.users.map(u => (
             <div key={u.id}>
