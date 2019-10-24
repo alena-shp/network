@@ -1,4 +1,5 @@
 import React from 'react'
+import { withRouter } from 'react-router-dom'
 import * as axios from 'axios'
 import { connect } from 'react-redux'
 import Profile from './Profile'
@@ -24,7 +25,9 @@ let mapStateToProps = state => {
   }
 }
 
+let WithUrldataContainer = withRouter(ProfileContainer)
+
 export default connect(
   mapStateToProps,
   { setUserProfile }
-)(ProfileContainer)
+)(WithUrldataContainer)
