@@ -1,15 +1,17 @@
-import React from 'react';
+import React from 'react'
 import s from './ProfileInfo.module.css'
+import Preloader from '../../common/Preloader'
 
-const ProfileInfo = () => {
+const ProfileInfo = props => {
+  if (!props.profile) {
+    return <Preloader />
+  }
   return (
     <div>
       <div>
-        <img src='http://intur-zak.com/web/images/resized/images/slides/hotel_ext02_1200_300.jpg' />
+        <img src={props.profile.photos.large} alt="" />
       </div>
-      <div>
-        ava + description
-      </div> 
+      <div>ava + description</div>
     </div>
   )
 }

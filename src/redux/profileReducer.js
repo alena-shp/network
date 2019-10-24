@@ -1,5 +1,6 @@
 const ADD_POST = 'ADD_POST'
 const ON_NEW_POST_CHANGE = 'ON_NEW_POST_CHANGE'
+const SET_USER_PROFILE = 'SET_USER_PROFILE'
 
 let installState = {
   PostData: [
@@ -7,7 +8,8 @@ let installState = {
     { id: 2, message: 'It is my first post' },
     { id: 3, message: 'Hello wold' }
   ],
-  newPostText: ''
+  newPostText: '',
+  profile: null
 }
 
 const profileReducer = (state = installState, action) => {
@@ -25,16 +27,26 @@ const profileReducer = (state = installState, action) => {
         ...state,
         newPostText: action.newPost
       }
+    case SET_USER_PROFILE:
+      return {
+        ...state,
+        profile: action.profile
+      }
     default:
       return state
   }
 }
 
-export const addPostActionCreator = () => ({ type: ADD_POST })
+export const addPost = () => ({ type: ADD_POST })
 
-export const onNewPostChangeActionCreator = text => ({
+export const onNewPostChange = text => ({
   type: ON_NEW_POST_CHANGE,
   newPost: text
+})
+
+export const setUserProfile = profile => ({
+  type: SET_USER_PROFILE,
+  profile
 })
 
 export default profileReducer
